@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Boleta de compra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="boleta">
+    <h1>🧾 Boleta Electrónica</h1>
+    <p>Gracias por su compra</p>
+
+    <table class="tabla-boleta">
+        <tr>
+            <th>Película</th>
+            <th>Género</th>
+            <th>Precio</th>
+        </tr>
+
+        {% for item in carrito %}
+        <tr>
+            <td>{{ item["titulo"] }}</td>
+            <td>{{ item["genero"] }}</td>
+            <td>S/ {{ item["precio"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Total: S/ {{ total }}</h2>
+
+    <button onclick="window.print()" class="btn-primary">🖨 Imprimir</button>
+    <a href="/" class="btn-secondary">Volver</a>
+</div>
+
+</body>
+</html>
+
+

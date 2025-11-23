@@ -2,39 +2,65 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Venta de Películas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieBooo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>🎬 Venta de Películas</h1>
+
+<header class="topbar">
+    <h1 class="logo">🎬 MovieBooo</h1>
+
+    <nav class="menu">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a onclick="abrirModal()">Agregar Película</a>
+        <a href="{{ url_for('carrito_view') }}">Mi Carrito 🛒</a>
+    </nav>
+</header>
+
+
+<main class="movie-grid">
+
+    {% for p in peliculas %}
+    <div class="movie-card">
+        <img src="{{ p['poster'] }}" class="poster">
+
+        <h3>{{ p["titulo"] }}</h3>
+        <p>{{ p["genero"] }}</p>
+        <p class="price">S/ {{ p["precio"] }}</p>
+
+        <div class="actions">
+            <a href="/editar/{{ p['id'] }}" class="btn-edit">✏ Editar</a>
+            <a href="/eliminar/{{ p['id'] }}" class="btn-delete">🗑 Eliminar</a>
+            <a href="/agregar_carrito/{{ p['id'] }}" class="btn-buy">🛒 Comprar</a>
+        </div>
+    </div>
+    {% endfor %}
+
+</main>
+
+
+<!-- MODAL AGREGAR PELÍCULA -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Agregar película</h2>
 
     <form action="/agregar" method="POST">
-        <input type="text" name="titulo" placeholder="Título" required>
-        <input type="text" name="genero" placeholder="Género" required>
-        <input type="number" step="0.01" name="precio" placeholder="Precio" required>
-        <button type="submit">Agregar</button>
-    </form>
+        <input name="titulo" placeholder="Título..." required>
+        <input name="genero" placeholder="Género..." required>
+        <input name="precio" placeholder="Precio..." required>
+        <input name="poster" placeholder="URL del poster..." required>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Género</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pelicula in peliculas %}
-            <tr>
-                <td>{{ pelicula['id'] }}</td>
-                <td>{{ pelicula['titulo'] }}</td>
-                <td>{{ pelicula['genero'] }}</td>
-                <td>S/ {{ pelicula['precio'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <button type="submit" class="btn-primary">Guardar</button>
+        <button type="button" class="btn-secondary" onclick="cerrarModal()">Cerrar</button>
+    </form>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
 </body>
 </html>
+
 

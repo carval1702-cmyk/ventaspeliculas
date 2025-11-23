@@ -1,40 +1,284 @@
+/* ------------------ RESET ------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background: #f4f4f4;
+    background: #111;
+    color: #fff;
+    overflow-x: hidden;
 }
 
-h1 {
-    text-align: center;
-}
-
-form {
+/* ------------------ TOP BAR ------------------ */
+.topbar {
+    width: 100%;
+    background: #000;
+    padding: 15px 40px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.menu a {
+    margin-left: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #ff4444;
+}
+
+/* ------------------ GRID DE PELÍCULAS ------------------ */
+.movie-grid {
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.movie-card {
+    background: #1b1b1b;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.movie-card:hover {
+    transform: translateY(-7px);
+    border-color: #ff4444;
+}
+
+.poster {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movie-card h3 {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.price {
+    font-size: 22px;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #44ff44;
+}
+
+/* ------------------ BOTONES ------------------ */
+.actions {
+    margin-top: 15px;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-buy {
+    display: block;
+    padding: 10px;
+    margin-top: 6px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-edit {
+    background: #007bff;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #0056b3;
+}
+
+.btn-delete {
+    background: #ff3b3b;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #cc0000;
+}
+
+.btn-buy {
+    background: #0f9d58;
+    color: white;
+}
+
+.btn-buy:hover {
+    background: #0b7c45;
+}
+
+/* ------------------ MODAL ------------------ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
 }
 
-input, button {
-    padding: 8px;
-    font-size: 14px;
+.modal-content {
+    background: #222;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
 }
 
-table {
-    margin: 0 auto;
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn-primary:hover {
+    background: #cc0000;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn-secondary:hover {
+    background: #333;
+}
+
+/* ------------------ CARRITO ------------------ */
+.carrito-container {
     width: 80%;
-    border-collapse: collapse;
-    background: white;
+    margin: auto;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.carrito-item {
+    display: flex;
+    background: #1b1b1b;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.carrito-item img {
+    width: 120px;
+    height: 160px;
+    border-radius: 8px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.empty {
+    text-align: center;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+.total {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 26px;
+    color: #44ff44;
+}
+
+.carrito-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.carrito-buttons a {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    background: #ff4444;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.carrito-buttons a:hover {
+    background: #cc0000;
+}
+
+/* ------------------ BOLETA ------------------ */
+.boleta {
+    width: 80%;
+    margin: auto;
     text-align: center;
 }
 
-th {
-    background: #333;
-    color: white;
+.tabla-boleta {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.tabla-boleta th, .tabla-boleta td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+}
+
+.tabla-boleta th {
+    background: #222;
+}
+
+.boleta button {
+    margin-top: 20px;
+}
+
+/* ------------------ BANNER DE BIENVENIDA ------------------ */
+.banner {
+    width: 100%;
+    background: linear-gradient(to right, #ff4444, #880000);
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 

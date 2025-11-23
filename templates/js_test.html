@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas JavaScript - MovieBooo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="simple-page">
+
+<header class="topbar">
+    <div class="logo">
+        🎬 <span>MovieBooo</span>
+    </div>
+
+    <nav class="topnav">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('carrito') }}">Carrito</a>
+        <a href="{{ url_for('pruebas_js') }}">Pruebas JS</a>
+    </nav>
+</header>
+
+<main class="form-page">
+
+    <h2>Zona de pruebas JavaScript</h2>
+    <p>Esta sección demuestra estructuras de control, arreglos, operadores y manipulación del DOM.</p>
+
+    <hr style="margin: 1rem 0; opacity: .3;">
+
+    <!-- =========================== -->
+    <!-- 1. ARREGLO + FOR + DOM -->
+    <!-- =========================== -->
+    <section>
+        <h3>1) Lista dinámica (Arreglo + for + DOM)</h3>
+
+        <button class="btn-primary" onclick="mostrarLista()">Mostrar lista de películas sugeridas</button>
+
+        <ul id="lista-sugerencias" style="margin-top: 1rem; line-height: 1.8;"></ul>
+    </section>
+
+    <hr style="margin: 1rem 0; opacity: .3;">
+
+    <!-- =========================== -->
+    <!-- 2. ENTRADA / SALIDA + IF -->
+    <!-- =========================== -->
+    <section>
+        <h3>2) Calculadora rápida (Entrada/Salida + operador + if)</h3>
+
+        <input id="n1" placeholder="Primer número" class="form-input">
+        <input id="n2" placeholder="Segundo número" class="form-input">
+        <button class="btn-primary" onclick="sumar()">Sumar</button>
+
+        <p id="resultado" style="margin-top: .8rem; font-weight: bold;"></p>
+    </section>
+
+    <hr style="margin: 1rem 0; opacity: .3;">
+
+    <!-- =========================== -->
+    <!-- 3. AGREGAR ELEMENTOS DINÁMICOS -->
+    <!-- =========================== -->
+    <section>
+        <h3>3) Agregar elementos a una caja (DOM dinámico)</h3>
+
+        <input id="texto" placeholder="Escribe algo…" class="form-input">
+        <button class="btn-primary" onclick="agregarTexto()">Agregar</button>
+
+        <div id="contenedor" style="margin-top: 1rem; background:#11141b; padding:1rem; border-radius:8px;"></div>
+    </section>
+
+</main>
+
+
+<script>
+/* =====================================
+   1) ARREGLOS + FOR + DOM
+   ===================================== */
+function mostrarLista() {
+    const sugerencias = ["Avengers", "Matrix", "Titanic", "Interstellar", "Gladiator"];
+
+    const lista = document.getElementById("lista-sugerencias");
+    lista.innerHTML = ""; // limpiar
+
+    // BUCLE FOR (solicitud del curso)
+    for (let i = 0; i < sugerencias.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = "🎬 " + sugerencias[i];
+        lista.appendChild(li);
+    }
+}
+
+
+/* =====================================
+   2) ENTRADA Y SALIDA + IF + OPERADORES
+   ===================================== */
+function sumar() {
+    const a = parseFloat(document.getElementById("n1").value);
+    const b = parseFloat(document.getElementById("n2").value);
+
+    let mensaje = "";
+
+    if (isNaN(a) || isNaN(b)) {
+        mensaje = "⚠️ Por favor ingresa números válidos.";
+    } else {
+        const suma = a + b; // OPERADOR +
+        mensaje = "Resultado de la suma: " + suma;
+    }
+
+    document.getElementById("resultado").textContent = mensaje;
+}
+
+
+/* =====================================
+   3) AGREGAR ELEMENTOS DINÁMICOS AL DOM
+   ===================================== */
+function agregarTexto() {
+    const texto = document.getElementById("texto").value;
+
+    if (texto.trim() === "") {
+        alert("Ingresa un texto válido.");
+        return;
+    }
+
+    const contenedor = document.getElementById("contenedor");
+    const p = document.createElement("p");
+
+    p.textContent = "🟦 " + texto;
+
+    contenedor.appendChild(p);
+
+    document.getElementById("texto").value = "";
+}
+</script>
+
+</body>
+</html>

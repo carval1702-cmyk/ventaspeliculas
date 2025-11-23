@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Película - MovieBooo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="simple-page">
+
+<header class="topbar">
+    <div class="logo">
+        🎬 <span>MovieBooo</span>
+    </div>
+    <nav class="topnav">
+        <a href="{{ url_for('index') }}">Volver al catálogo</a>
+    </nav>
+</header>
+
+<main class="form-page">
+    <h2>Editar Película</h2>
+
+    <form action="{{ url_for('editar', id=pelicula['id']) }}" method="POST" class="form-grid form-wide">
+        <label>
+            Título
+            <input name="titulo" value="{{ pelicula['titulo'] }}" required>
+        </label>
+        <label>
+            Género
+            <input name="genero" value="{{ pelicula['genero'] }}" required>
+        </label>
+        <label>
+            Precio
+            <input name="precio" value="{{ pelicula['precio'] }}" required>
+        </label>
+        <label>
+            URL del poster
+            <input name="poster" value="{{ pelicula['poster'] }}">
+        </label>
+
+        <div class="modal-buttons">
+            <button type="submit" class="btn-primary">Guardar cambios</button>
+            <a href="{{ url_for('index') }}" class="btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>
